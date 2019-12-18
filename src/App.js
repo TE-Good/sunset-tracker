@@ -1,7 +1,7 @@
 // import React, { useState } from 'react';
 import React, { useState } from 'react'
 import './App.css';
-import ReactMapGL from 'react-map-gl'
+import ReactMapGL, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 
@@ -17,14 +17,21 @@ function App() {
   )
  
   return (
-    <div className="App">
+    <div className="app">
     {console.log('render', viewport)}
-      <p>hello world</p>
       <ReactMapGL
+        height={'95vh'}
+        width={'72vw'}
+        zoom={1}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/dark-v9"
         {...viewport}
         onViewportChange={(viewport) => setViewport({viewport})}
-      />
+      > 
+        <Marker latitude={0} longitude={-180} offsetLeft={0} offsetTop={0}>
+          <div className="marker"></div>
+        </Marker>
+      </ReactMapGL>
     </div>
   )
 }
